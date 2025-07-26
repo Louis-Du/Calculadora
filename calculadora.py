@@ -1,37 +1,47 @@
-print("CALCULADORA PARA DOS CANTIDADES")
+print("--Bienvenido a la Calculadora--")
+def proceso_arimetico(entrada):
+  try:
+    entrada = entrada.replace(' ','') # Remplaza ' ' por ''.
+    resultado = 0
 
-print('+ = suma \n- = menos \n× = multiplicar \n÷ = dividir') # Impresión en pantalla que muestra las opciones que tiene el usuario para realizar operaciones matematicas.
-print("  ")
+    if '+' in entrada:
+      sumar = entrada.split('+')
+      numero1 = float(sumar[0])
+      numero2 = float(sumar[1])
+      resultado = numero1 + numero2
 
-while True:
-  try: # Bloque try: Intenta ejecutar este código. Si ocurre algún error conocido, salta a los bloques except.
-    numero1 = float(input("Primer número: "))
-    simbolo = input("Operación: ").lower()
-    numero2 = float(input("Segundo número: ")) 
-  
-    if simbolo in ("+", "mas", "suma"):
-      print(f"{numero1} + {numero2} = {numero1 + numero2}") # Realiza operaciones de suma.
+    elif '-' in entrada:
+      restar = entrada.split('-')
+      numero1 = float(restar[0])
+      numero2 = float(restar[1])
+      resultado = numero1 - numero2
 
-    elif simbolo in ("-", "menos", "resta"):
-      print(f"{numero1} - {numero2} = {numero1 - numero2}") # Realiza operaciones de resta.
+    elif '*' in entrada:
+      multiplicar = entrada.split('*')
+      numero1 = float(multiplicar[0])
+      numero2 = float(multiplicar[1])
+      resultado = numero1 * numero2
 
-    elif simbolo in ("×", "*", "x", "por", "multiplicar"):
-      print(f"{numero1} × {numero2} = {numero1 * numero2}") # Realiza operaciones de multiplicación.
+    elif '/' in entrada:
+      dividir = entrada.split('/')
+      numero1 = float(dividir[0])
+      numero2 = float(dividir[1])
+      resultado = numero1 / numero2
 
-    elif simbolo in ("÷", "/", "dividir"):
-      if numero2 == 0:
-        print("ERROR: No puedes dividir entre cero")
-      else:
-        print(f"{numero1} ÷ {numero2} = {numero1 / numero2}")# Realiza operaciones de división y muestra error si uno de los números es un 0.
-
-    else:
-      print("Ingresa un simbolo o operador arimetico valido")
-
-    salir_continuar = input("¿Quieres realizar otra Operación? \n(s/n):\n ").lower()
-    if salir_continuar not in ("s", "y", "si", "yes"):
-      break # Pregunta si quiere hacer otra operación, si no quiere entonces rompe el bucle.
-
-  except ValueError:
-    print("ERROR: Debes de ingresa un número \nIntenta de nuevo") # Muestra error si el usuario ingresa una cadena en lugar de un número.
+    elif '^' in entrada:
+      elevar = entrada.split('^')
+      numero1 = float(elevar[0])
+      numero2 = float(elevar[1])
+      resultado = numero1 ** numero2
+    print(resultado)
   except ZeroDivisionError:
-    print("Error: No puedes dividir entre 0\nIntenta de nuevo") # Muestra error si el usuario ingresa un 0 en el momento de ralizar una división
+    print("ERROR: No es posible dividir entre 0, vuelve a intentarlo en otro universo")
+  except ValueError:
+    print("ERROR: Hay un error... o varios")
+      
+while True:
+  problema = input("¿Qué cálculo haremos hoy? \n ")
+  if problema == '':
+    break
+  proceso_arimetico(problema)
+
